@@ -1,7 +1,7 @@
 # Project Mockingbird 🐦
 
 ## Overview
-Project Mockingbird is an accelerated, 6-8 week machine learning initiative to enhance Cyber Defence testing capabilities. It addresses the risk of using real production data to test SIEM (Microsoft Sentinel) detection rules, which can expose Personally Identifiable Information (PII) and violate data privacy policies.
+Project Mockingbird is an accelerated, machine learning initiative to enhance Cyber Defence testing capabilities. It addresses the risk of using real production data to test SIEM (Microsoft Sentinel) detection rules, which can expose Personally Identifiable Information (PII) and violate data privacy policies.
 
 ## Approach
 A Tabular Generative Adversarial Network (CTGAN) ingests a sanitized sample of real security logs and generates thousands of realistic, purely synthetic logs. This gives the SOC team a mathematically accurate, zero-risk environment for continuous testing and validation of detection logic.
