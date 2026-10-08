@@ -20,4 +20,4 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 
 
 # How to use the CTGAN training Model 🛠️
-
+- Note: The training Model is only applcable to `WindowsSecurityEvents`
