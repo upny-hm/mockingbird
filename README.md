@@ -17,3 +17,7 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 | **Formatting** | 100% of generated IP addresses, timestamps, and usernames match the structural format of the original dataset. |
 | **Integration** | The synthetic .csv is successfully ingested into a Microsoft Sentinel Custom Log workspace (`_CL`) without parsing errors. |
 | **Validation** | The SOC team successfully triggers at least one existing SIEM analytic rule using the synthetic log data. |
+
+
+# How to use the CTGAN training Model 🛠️
+
