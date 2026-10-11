@@ -19,6 +19,6 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 | **Validation** | The SOC team successfully triggers at least one existing SIEM analytic rule using the synthetic log data. |
 
 
-# How to use the CTGAN training Model 🛠️
+# Project Workflow
 - **Note**: The training Model only works with `WindowsSecurityEvents` as the training dataset format
-- 
+<img width="2021" height="8192" alt="Data Ingestion and-2026-10-11-100656" src="https://github.com/user-attachments/assets/d4684d59-9484-4fb3-abaf-e97f415df4ff" />
