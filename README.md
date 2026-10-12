@@ -53,7 +53,7 @@ I designed and built an end-to-end pipeline that trains a CTGAN model on sanitiz
  
 ## Limitations
  
-- The CTGAN model is built only for `WindowsSecurity` Events and does not work with other log types.
+- The CTGAN model is built only for Windows `SecurityEvent` logs and does not work with other log types.
 - It requires pre-processing of the input data and post-processing of the generated output.
   
 ## Future Work
