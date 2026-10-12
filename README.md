@@ -20,5 +20,42 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 
 
 # Project Workflow
-- **Note**: The training Model only works with `WindowsSecurityEvents` as the training dataset format
 <img width="5495" height="7268" alt="Data Ingestion and-2026-10-12-055624" src="https://github.com/user-attachments/assets/3fb397ec-5883-48ac-ab3b-ecc4b4fce576" />
+NOTE: A full project write-up covering the methodology, implementation and results is also available in this repository
+
+## Tech Stack
+ 
+| Category | Technology |
+|---|---|
+| **Language** | Python |
+| **ML Model** | CTGAN (Conditional Tabular GAN) |
+| **Evaluation** | SDMetrics |
+| **SIEM** | Microsoft Sentinel |
+| **Query Language** | KQL (Kusto Query Language) |
+| **Log Storage** | Azure Log Analytics Workspace (Custom Log table `_CL`) |
+| **Ingestion** | Logs Ingestion API, Data Collection Rule (DCR) |
+| **Data Transfer** | Azure Storage Account over SFTP |
+| **Environment** | Ubuntu VM on VMware |
+
+ 
+## Sample Data
+ 
+Windows `SecurityEvent` logs (sanitized; tenant ID shortened here).
+ 
+| TenantId | TimeGenerated | Account | AccountType | Computer | EventSourceName | Channel | Task | EventID | Activity |
+|---|---|---|---|---|---|---|---|---|---|
+| 6618e8e6-… | 2026-09-15T13:02:59Z | Account16 | Machine | 10.168.5.31 | Microsoft-Windows-Security-Auditing | Security | 12544 | 4624 | 4624 - An account was successfully logged on. |
+| 6618e8e6-… | 2026-09-15T12:05:16Z | Account31 | User | 10.168.5.46 | Microsoft-Windows-Security-Auditing | Security | 12544 | 4625 | 4625 - An account failed to log on. |
+ 
+## My Role
+ 
+I designed and built an end-to-end pipeline that trains a CTGAN model on sanitized Windows security events and generates realistic synthetic logs. I then ingested those logs into Microsoft Sentinel to test and validate detection rules without exposing real data.
+ 
+## Limitations
+ 
+- The CTGAN model is built only for Windows Security Events and does not generalize to other log types.
+- It requires pre-processing of the input data and post-processing of the generated output.
+- 
+## Future Work
+ 
+I plan to extend the model to accept other Microsoft Sentinel log types, such as `SigninLogs` and `DeviceEvents`.
