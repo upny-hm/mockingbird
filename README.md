@@ -1,6 +1,6 @@
-# Project Mockingbird 🐦
+# Project Mockingbird
 
-## Overview
+## 🔍 Overview
 Project Mockingbird is an accelerated, machine learning initiative to enhance Cyber Defence testing capabilities. It addresses the risk of using real production data to test SIEM (Microsoft Sentinel) detection rules, which can expose Personally Identifiable Information (PII) and violate data privacy policies.
 
 ## Approach
@@ -9,7 +9,7 @@ A Tabular Generative Adversarial Network (CTGAN) ingests a sanitized sample of r
 ## Disclaimer
 Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sentinel) and security detection rules will be "fooled" into triggering alerts by the synthetic logs — proving the accuracy of the mimicry.
 
-## Success Metrics
+## ✅ Success Metrics
 
 | Category | Measurement of Success |
 |---|---|
@@ -19,11 +19,15 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 | **Validation** | The SOC team successfully triggers at least one existing SIEM analytic rule using the synthetic log data. |
 
 
-# Project Workflow
+# ➡️ Project Workflow 
 <img width="5495" height="7268" alt="Data Ingestion and-2026-10-12-055624" src="https://github.com/user-attachments/assets/3fb397ec-5883-48ac-ab3b-ecc4b4fce576" />
-NOTE: A full project write-up covering the methodology, implementation and results is also available in this repository
 
-## Tech Stack
+## 📄 Full Project Write-Up
+
+The complete report is available here: **[Project Mockingbird – Write-Up (PDF)](docs/Project_Mockingbird_Report.pdf)**
+
+
+## 🖥️ Tech Stack
  
 | Category | Technology |
 |---|---|
@@ -38,7 +42,7 @@ NOTE: A full project write-up covering the methodology, implementation and resul
 | **Environment** | Ubuntu VM on VMware |
 
  
-## Sample Data
+## 📊 Sample Data
  
 Windows `SecurityEvent` logs (sanitized; tenant ID shortened here).
  
@@ -51,7 +55,7 @@ Windows `SecurityEvent` logs (sanitized; tenant ID shortened here).
  
 I designed and built an end-to-end pipeline that trains a CTGAN model on sanitized Windows security events and generates realistic synthetic logs. I then ingested those logs into Microsoft Sentinel to test and validate detection rules without exposing real data.
  
-## Limitations
+## ⚠️ Limitations
  
 - The CTGAN model is built only for Windows `SecurityEvent` logs and does not work with other log types.
 - It requires pre-processing of the input data and post-processing of the generated output.
