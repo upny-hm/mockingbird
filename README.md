@@ -24,7 +24,7 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 
 ## 📄 Full Project Write-Up
 
-The complete report is available here: **[Project Mockingbird – Write-Up (PDF)](docs/Project_Mockingbird_Report.pdf)**
+The complete report is available here: **[Project Mockingbird – Write-Up (PDF)](docs/Project_write_up.pdf)**
 
 
 ## 🖥️ Tech Stack
