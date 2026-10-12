@@ -1,0 +1,37 @@
+
+let lookback      = 1d;      // rule "Lookup data from last"
+let window        = 1h;      // "brief period"
+let min_accounts  = 20;      // distinct accounts failing in the window
+let min_spike     = 10.0;    // failures vs the normal hourly rate
+let fail_ids      = dynamic([4625, 4771]);   // failed logon, Kerberos pre-auth failed
+let success_ids   = dynamic([4624, 4768]);   // successful logon, Kerberos TGT issued
+let events   = GAN_CL_CL | where TimeGenerated > ago(lookback);
+let failures = events | where EventID in (fail_ids);
+// Accounts that are active: they logged on successfully in the lookback period
+let active_accounts = events | where EventID in (success_ids) | distinct Account | extend IsActive = true;
+// Accounts that exist: they appear in any event other than a failure
+let known_accounts  = events | where EventID !in (fail_ids) | distinct Account | extend IsKnown = true;
+// Normal number of failed logons per hour (median of the lookback period)
+let baseline = toscalar(
+    failures
+    | summarize c = count() by bin(TimeGenerated, window)
+    | summarize percentile(c, 50));
+failures
+| join kind=leftouter active_accounts on Account
+| join kind=leftouter known_accounts on Account
+| summarize
+    StartTime        = min(TimeGenerated),
+    EndTime          = max(TimeGenerated),
+    FailedAttempts   = count(),
+    TargetedAccounts = dcount(Account),
+    SourceIPs        = dcount(Computer),
+    ActiveTargeted   = dcountif(Account, IsActive == true),
+    UnknownTargeted  = dcountif(Account, isnull(IsKnown)),
+    SampleAccounts   = make_set(Account, 20),
+    SampleSourceIPs  = make_set(Computer, 20)
+    by Window = bin(TimeGenerated, window)
+| extend SpikeRatio = round(todouble(FailedAttempts) / max_of(todouble(baseline), 1.0), 1)
+| where TargetedAccounts >= min_accounts and SpikeRatio >= min_spike
+| extend Severity = iff(UnknownTargeted > 0 or SpikeRatio >= 50, "High", "Medium")
+| project StartTime, EndTime, FailedAttempts, SpikeRatio, TargetedAccounts, ActiveTargeted,
+          UnknownTargeted, SourceIPs, Severity, SampleAccounts, SampleSourceIPs
