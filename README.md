@@ -21,4 +21,4 @@ Just as other birds are fooled by a mockingbird's call, the SIEM (Microsoft Sent
 
 # Project Workflow
 - **Note**: The training Model only works with `WindowsSecurityEvents` as the training dataset format
-<img width="2021" height="8192" alt="Data Ingestion and-2026-10-11-100656" src="https://github.com/user-attachments/assets/d4684d59-9484-4fb3-abaf-e97f415df4ff" />
+<img width="5495" height="7268" alt="Data Ingestion and-2026-10-12-055624" src="https://github.com/user-attachments/assets/3fb397ec-5883-48ac-ab3b-ecc4b4fce576" />
